@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mood Age Weather Music Player</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <!-- Loading Screen -->
+  <div id="loading">
+    <!-- Mobile Loading Video: a1.mp4 -->
+    <video id="loadingVideoMobile" autoplay muted playsinline class="mobile-only">
+      <source src="{{ url_for('static', filename='assets/a1.mp4') }}" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <!-- Desktop Loading Video: b1.mp4 -->
+    <video id="loadingVideoDesktop" autoplay muted playsinline class="desktop-only">
+      <source src="{{ url_for('static', filename='assets/b1.mp4') }}" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+
+  <!-- Main Content (hidden until loading is complete) -->
+  <div id="mainContent" style="display: none;">
+    <!-- Mobile Layout -->
+    <div id="mobileLayout" class="mobile-only">
+      <!-- Mobile Background Image: a2.png -->
+      <img id="mobileBackground" src="{{ url_for('static', filename='assets/a2.png') }}" alt="Background">
+      <!-- Overlay: camera feed, quote, and Play button arranged vertically -->
+      <div id="mobileOverlay">
+        <video id="mobileCamera" autoplay playsinline></video>
+        <p id="quoteMobile">"Where words fail, music speaks."</p>
+        <!-- Play button appears only after camera is active -->
+        <button id="mobilePlayBtn" style="display: none;">Play</button>
+        <p id="resultMobile">Loading...</p>
+      </div>
+    </div>
+    
+    <!-- Desktop Layout -->
+    <div id="desktopLayout" class="desktop-only">
+      <!-- Desktop Background Video: b2.mp4 -->
+      <video id="bgVideo" autoplay muted loop>
+        <source src="{{ url_for('static', filename='assets/b2.mp4') }}" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <div id="desktopContent">
+        <div id="leftColumn">
+          <!-- Camera feed (initially hidden) -->
+          <video id="desktopCamera" autoplay playsinline style="display: none;"></video>
+          <!-- Play button below camera (visible only after camera is active) -->
+          <button id="desktopPlayBtn" style="display: none;">Play</button>
+          <p id="resultDesktop">Loading...</p>
+        </div>
+        <div id="rightColumn">
+          <div id="quoteContainer">
+            <p id="quoteDesktop">"Music is the literature of the heart."</p>
+          </div>
+          <!-- "Try It!" Button to activate camera on desktop -->
+          <button id="tryItBtn">Try It!</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
